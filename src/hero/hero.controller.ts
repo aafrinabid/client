@@ -1,4 +1,4 @@
-import { Body, Controller, Get, OnModuleInit, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, OnModuleInit, Param, Patch, Post } from '@nestjs/common';
 import { Client, ClientGrpc } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 import { grpcClientOptions } from 'src/grpc-hero.options';
@@ -13,6 +13,7 @@ interface TaskService {
     getAllTasks(id:number): Observable<any>;
     createTask(createTaskDto:createTaskDto): Observable<any>
     updateTaskStatus(updateTaskStatusDto: updateTaskStatusDto) : Observable<any>
+    deleteTask (id:number) :Observable<any>
   }
 
 
@@ -49,4 +50,13 @@ export class HeroController implements OnModuleInit {
     updateTaskStatus(@Body() updateTaskStatusDto:updateTaskStatusDto) {
         return this.heroService.updateTaskStatus(updateTaskStatusDto)
     }
+
+    @Delete()
+    deleteTask(@Body() data) {
+        console.log(data)
+        return this.heroService.deleteTask(data)
+
+    }
+
+
 }

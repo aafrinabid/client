@@ -7,6 +7,7 @@ service TaskService {
   rpc GetAllTasks (TaskById) returns (Tasks) {}
   rpc CreateTask (CreateTaskStructure) returns (Task) {}
   rpc UpdateTaskStatus (StatusStructure) returns (Task) {}
+  rpc DeleteTask (TaskById) returns (Tasks) {}
 }
 
 message TaskById {
