@@ -1,16 +1,37 @@
 syntax = "proto3";
 
-package hero;
+package task;
 
-service HeroService {
-  rpc FindOne (HeroById) returns (Hero) {}
+service TaskService {
+  rpc FindOne (TaskById) returns (Task) {}
+  rpc GetAllTasks (TaskById) returns (Tasks) {}
+  rpc CreateTask (CreateTaskStructure) returns (Task) {}
+  rpc UpdateTaskStatus (StatusStructure) returns (Task) {}
 }
 
-message HeroById {
+message TaskById {
   int32 id = 1;
 }
 
-message Hero {
+message Task {
   int32 id = 1;
   string name = 2;
+  string status = 3;
 }
+
+message Tasks {
+  repeated Task items = 1;
+}
+
+message CreateTaskStructure {
+  string name = 1 ;
+}
+
+message StatusStructure {
+  int32 id = 1;
+  string status = 2 ;
+}
+
+
+
+message NoArgs {}
